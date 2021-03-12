@@ -1,0 +1,25 @@
+Package: xbox
+Title: author's packages for himself
+Version: 0.5
+Authors@R: 
+    person(given = "JiaXuan",
+           family = "Wang",
+           role = c("aut", "cre"),
+           email = "poormouse@126.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: The packages created mainly for myself to help tidy data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    hablar,
+    tibble,
+    KEGGREST,
+    qvalue,
+    tidyr,
+    dplyr,
+    ggplot2,
+    stats,
+    graphics,
+    plotrix
+RoxygenNote: 7.1.1

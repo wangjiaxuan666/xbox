@@ -1,0 +1,235 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+<!-- badges: start -->
+
+[![](https://img.shields.io/github/issues/wangjiaxuan666/xbox)](https://img.shields.io/github/issues/wangjiaxuan666/xbox)
+[![](https://img.shields.io/github/issues/wangjiaxuan666/xbox)](https://img.shields.io/github/forks/wangjiaxuan666/xbox)
+[![](https://img.shields.io/github/issues/wangjiaxuan666/xbox)](https://img.shields.io/github/stars/wangjiaxuan666/xbox)
+<!-- badges: end -->
+
+# xbox:wrench: <img src='man/figures/xbox_logo.png' align="right" height="139" />
+
+**Author**: [Jiaxuan Wang](https://abego.cn/) :pencil:
+
+[![](https://img.shields.io/badge/follow%20me%20on-WeChat-green.svg)](https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/back/qrcode_for_Wechat.jpg)
+
+The goal of xbox is created with some script writed in my spare time. on the other side, the R packages is created just for myself. My names is Wang Jiaxuan, a chinese name. the packages named "xbox" because the tail name is xuan. like xuan's tool box(Why not xtoolbox, or xtbox, No! these are so complex).
+
+with the time flewed, the R packages function will be more and more.
+
+
+## update log
+
+### update 20201212
+
+- [x]  change the function `get_df` fix the bug for select the column names
+- [x]  add the function `get_mat` for transfer data.frame or tibble to matrix
+- [x] `get_tb` add  the `var` for change the “rownames” to “id”
+
+### update 20201227
+
+- [x] add the fucntion 'need_colors' to choose the chinese traditional color palette that disigned by 大东设计. who is a bolger in tiktok(抖音). When I saw his painting, I feel shock for those color's power. So I decide make a R packages to put those color into a color schemes that everyone can use easily. and you can use `disco` to display the color you choose. It is convenient to choose the one which you like most.
+
+### update 20210123
+
+- [x] add the `vennplot` function for draw venn plot, It's not a simple venn plot , it's a venn plot can change the intersect area represent the intersect number size. also somebody call it area-proportional Venn diagrams.
+
+## Installation
+
+The R packages only can install the development version from
+[GitHub](https://github.com/wangjiaxuan666/xbox) with:
+
+```{r eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("wangjiaxuan666/xbox")
+```
+Notice, If install failed with the messages
+
+```
+ERROR: dependencies 'KEGGREST', 'qvalue' are not available for package 'xbox'
+* removing 'C:/R/library/xbox'
+```
+
+You should install R packages `KEGGREST` and `qvalue` firstly with code:
+
+```{r eval = FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("qvalue")
+BiocManager::install("KEGGREST")
+```
+
+# Update
+
+It's best to update before you start use the package. just because it is constantly updated and add new fucntion within.
+
+```{r eval = FALSE}
+devtools::update_packages("xbox")
+```
+
+## Function
+
+Firstlrmarkdown::render("README.Rmd")
+y, you should library the `xbox` R packages.
+```{r}
+library(xbox)
+```
+
+### need_colors and disco
+
+add the fucntion 'need_colors' to choose the chinese traditional color palette that disigned by 大东设计. who is a bolger in tiktok(抖音). When I saw his painting, I feel shock for those color's power. So I decide make a R packages to put those color into a color schemes that everyone can use easily. and you can use `disco` to display the color you choose. It is convenient to choose the one which you like most.
+
+
+```{r}
+need_colors("two2")
+disco("two2")
+need_colors("nine1",5)
+disco("nine1",5)
+```
+
+In my disign, for ease of use. I use the 'the number which you want' + 'id' to name the color palette, such as "two1","two2","three1","four1","nine1". Even you forget so simple name, it's doesn't matter. Beacuse you can use the number directly. Now, in a word, it's very convenient!!
+
+```{r}
+need_colors(10)
+disco(10)
+```
+
+For more details, please see the bolg "<a href="https://mp.weixin.qq.com/s?__biz=MzI3NDEwMjgxMA==&mid=2650603537&idx=1&sn=b31e5a5a8a7963230d7e155b9840ed5d&chksm=f3108f64c467067231521c6b4c333224683c9ec2ceafa857c568aa70dcc953069f70b054e748&token=233807204&lang=zh_CN#rd" target="_blank">R包xbox-增加中国风配色方案"</a>, which publiced on WeChat official account.<a href="https://pic-1259340288.cos.ap-guangzhou.myqcloud.com/back/qrcode_for_Wechat.jpg" target="_blank">Abego</a>
+
+### col_ttest
+
+the first function is `col_ttest`, the function is creat for the `t.test` in the two column group to test. the output including the **pvalue**,**qvalue**.
+Notice,the qvalue is the result of the R packages [`qvalue`](https://www.bioconductor.org/packages/release/bioc/html/qvalue.html).the parameter is defult. I think is adjust pvalue method is [bonferroni](https://www.statisticssolutions.com/bonferroni-correction/).
+
+```{r}
+set.seed("20201225")
+test = matrix(rnorm(20), 2, 10)
+colnames(test) = paste("Test", 1:10, sep = "")
+rownames(test) = paste("Gene", 1:2, sep = "")
+str(col_ttest(data = test,g1 = 1:5,g2 = 6:10))
+```
+
+### t_dat
+
+the `t_dat` function is uesed for transpose the data. Notice,it's not the function `transpose` in `tidyverse` or `tidyr`. `t_dat` can exchange the column and row. Make the column names become the row names and the row names become the column names. the data is tranpose with the names. it is complex for me to explain it clearly with the English. let's see how does it work.
+
+```{r}
+df = mtcars[1:6,1:6]
+print(df)
+print(t_dat(df))
+```
+
+Maybe you have see the `NOTICE` that mentioned the R packages `hablar`. The `hablar` is creat by David Sjoberg. a excellent R packages. You can see its introdution in [Github](https://github.com/davidsjoberg/hablar). i use the funtion `retype` to help the change and ensure the column type. But I still think we should chect the result again by `str()`.
+
+### koid_to_pathway
+
+the function is useful the biology. If you have a list of ko number id. But don't know the the name or descrption of the ko ID . You should try the function. I use the `keggget`funtion in R packages `KEEGREST` which R packages in [bioconda](https://www.bioconductor.org/packages/release/bioc/html/KEGGREST.html). the native function can scrawl the all information form KEGG Database. But I only need the `KEGG A Anoation`,`KEGG B Anoation` and the `KEGG Pathway Anoation`. So the `koid_to_pathway` only extract the the information of the pathway description. like thie:
+
+```{r}
+koid_to_pathway("ko04075")
+#Success depends on the network.
+#koid <-c("ko00010", "ko00020", "ko00030")
+#koid_to_pathway(koid)
+```
+
+### get_tb, get_df and get_mat
+
+the simple function! the thing only can be done is change the data.frame to a tibble. I creat it just because of the funtion `rownams_to_column` which's names is too long!
+
+The simple example is :
+
+```{r}
+head(cars)
+head(get_tb(cars))
+```
+
+Not end the sister function `get_df`, Which change the tibble to data.frame .
+
+```{r}
+head(mtcars)
+head(get_df(mtcars))
+```
+
+The `get_mat` function is used for tansfer data whatever which type it is to a matrix.
+
+```{r}
+head(get_mat(cars))
+```
+
+### the heat density point plot
+
+The function `heatpoint`  is created for the desity plot, It can caculate the point density in 2-dimension coordinate or 1D coordinate by the parameter `only`. Of course, the Main purpose is the plot a density heatpoint.
+
+```{r}
+points = 5000
+x = c(rnorm(points/2))
+y = x + rnorm(points/2,sd=0.8)
+x = sign(x)*abs(x)^1.3
+heatpoint(x,y) -> dat_result
+str(dat_result)
+#including the three list the plot data
+head(dat_result$plot.data)
+# and the result of cor
+data.frame(dat_result$cor.result)
+# and the result of lm
+str(dat_result$lm.result)
+```
+
+You can use the result of `heatpoint`to plot by yourself, also can use the the R scription in R packages names`plot`
+
+```{r}
+xplot(dat_result)
+```
+
+### vennplot
+
+Draw an area-proportional Venn diagram of 2 or 3 circles change by wangjiaxuan
+The original function from bioVenn R packages(https://cran.r-project.org/web/packages/BioVenn/index.html), I improve the data output and delete the `output` parameter.
+on the next step , I plan to add the ggplot2 on the function which draw venn plot. or change the postion of group title name whcih is on the centre of circle now, very ugly.
+ 
+This function creates an area-proportional Venn diagram of 2 or 3 circles, based on lists of (biological) identifiers. It requires three parameters: input lists X, Y and Z. For a 2-circle Venn diagram, one of these lists should be left empty. Duplicate identifiers are removed automatically.
+
+When using a BioVenn diagram for a publication, please cite:
+BioVenn - a web application for the comparison and visualization of biological lists using area-proportional Venn diagrams
+T. Hulsen, J. de Vlieg and W. Alkema, BMC Genomics 2008, 9 (1): 488
+
+```{r}
+list_x <- c("1007_s_at","1053_at","117_at","121_at","1255_g_at","1294_at")
+list_y <- c("1255_g_at","1294_at","1316_at","1320_at","1405_i_at")
+list_z <- c("1007_s_at","1405_i_at","1255_g_at","1431_at","1438_at","1487_at","1494_f_at")
+biovenn <- vennplot(list_x, list_y, list_z)
+```
+## count_range
+
+This function is to be able to calculate counts in various ranges. It comes with a drawing function. At present, this function is s3 general function, which can automatically identify the input data type and draw.
+
+```{r}
+data = range_count(x = rnorm(100,5)*100,gap = 100,min_num = 0,max_num = 1000)
+print(data)
+xplot(data)
+```
+
+## END
+
+```{r}
+devtools::session_info()[["platform"]]
+```
+
+```{r}
+Sys.Date()
+```
+
