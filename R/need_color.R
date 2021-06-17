@@ -17,11 +17,23 @@
 need_colors = function(colpal, nrcol = NULL,style = "china")
 {
   if(style == "china"){
-    colornames = c("#758e61", "#998F8F", "#8CADA6", "#D19848", "#F1ABAD", "#ABA0CB", "#EB4B17", "#02786A", "#4C8045", "#D23918", "#8CADA6", "#DFADBB", "#EFB08A", "#FEF9EF", "#F1ABAD", "#ABA0CB", "#FEF9EF", "#EFB08A", "#EEC96B", "#466B39", "#9d2c32", "#494367", "#cb6922", "#a58475", "#b25c43", "#8c4356", "#b26c60", "#eb5934", "#c32a2c")
+    colornames = c("#758e61", "#998F8F", "#8CADA6", "#D19848", "#F1ABAD", 
+                   "#ABA0CB", "#EB4B17", "#02786A", "#4C8045", "#D23918", 
+                   "#8CADA6", "#DFADBB", "#EFB08A", "#FEF9EF", "#F1ABAD", 
+                   "#ABA0CB", "#FEF9EF", "#EFB08A", "#EEC96B", "#466B39", 
+                   "#9d2c32", "#494367", "#cb6922", "#a58475", "#b25c43", 
+                   "#8c4356", "#b26c60", "#eb5934", "#c32a2c")
+    #随机颜色不能出现白色
+    random_colors = c("#998F8F", "#8CADA6", "#D19848", "#F1ABAD", 
+                      "#ABA0CB", "#EB4B17", "#02786A", "#4C8045", 
+                      "#DFADBB", "#F1ABAD", "#003E89", "#494367"
+                      "#EFB08A", "#EEC96B", 
+                      "#9d2c32", "#494367", "#cb6922", "#a58475", "#b25c43", 
+                      "#8c4356", "#eb5934", "#c32a2c")
     # 简单设置数字出随机颜色
     if(is.numeric(colpal)){
       colpal = ceiling(colpal)
-      palette = colornames[sample(length(colornames),colpal)]
+      palette = random_colors[sample(length(colornames),colpal)]
       nrcol = NULL
       cat(sprintf("Randomly select %d colors from all the colors.\n", length(palette)))
     } else {
