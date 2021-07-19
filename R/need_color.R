@@ -26,7 +26,7 @@ need_colors = function(colpal, nrcol = NULL,style = "china")
     #随机颜色不能出现白色
     random_colors = c("#998F8F", "#8CADA6", "#D19848", "#F1ABAD", 
                       "#ABA0CB", "#EB4B17", "#02786A", "#4C8045", 
-                      "#DFADBB", "#F1ABAD", "#003E89", "#494367"
+                      "#DFADBB", "#F1ABAD", "#003E89", "#494367",
                       "#EFB08A", "#EEC96B", 
                       "#9d2c32", "#494367", "#cb6922", "#a58475", "#b25c43", 
                       "#8c4356", "#eb5934", "#c32a2c")
