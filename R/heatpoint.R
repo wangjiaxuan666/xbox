@@ -125,7 +125,7 @@ heatpoint <- function(x,
   formula = formula
   lm.res = lm(formula)
   res = list(plot.data = data.frame(x = x,y = y,Density = heatvec),
-             cor.result = list(cor = cor.res[["estimate"]][["cor"]],
+             cor.result = list(cor = re[["estimate"]][[names(re[["estimate"]])]],
                                pvalue = cor.res[["p.value"]],
                                method = cor.res["method"]),
              lm.result = list(formula = lm.res[["coefficients"]],
