@@ -4,6 +4,7 @@
 #' @param g1 the number range for group1 like "`1:3`"
 #' @param g2 the number range for group2 like "`4:6`"
 #' @param adjust TRUE/FALSE add/ or not add the qvalue by qvalue packsages.
+#' @param p TRUE/FALSE add/ or not add the pvalue by ttest.
 #' @return the qvalue and pvalue
 #' @export
 #' @importFrom qvalue qvalue
@@ -17,21 +18,23 @@
 #' rownames(test) = paste("Gene", 1:20, sep = "")
 #' col_ttest(data = test,g1 = 1:5,g2 = 6:10)
 
-col_ttest <- function (data, g1, g2, adjust = TRUE) 
-{
-  pv = (apply(data, 1, function(x) unlist(t.test(x[g1], x[g2])["p.value"])))
-  log2fc = (apply(data, 1, function(x) log2(mean(x[g1])/mean(x[g2]))))
-  new_data = cbind(data, pv)
-  new_data = cbind(new_data,log2fc)
-  new_data = as.data.frame(new_data)
-  if (adjust) {
-    if (nrow(new_data) > 5000) {
-      new_data <- cbind(new_data, qvalue = qvalue::qvalue(new_data$pvalue)[["qvalues"]])
+col_ttest <- function (data, g1, g2, adjust = TRUE, p = TRUE){
+    log2fc = (apply(data, 1, function(x) log2(mean(x[g1])/mean(x[g2]))))
+    if(p){
+      pv = (apply(data, 1, function(x) unlist(t.test(x[g1], x[g2])["p.value"])))
+      new_data = cbind(data, pv)
+    } else {
+      new_data = data
     }
-    else {
-      message("The number is less than 5000, and adjust pvalue is not recommended")
+    new_data = cbind(new_data, log2fc)
+    new_data = as.data.frame(new_data)
+    if (adjust) {
+      if (nrow(new_data) > 5000) {
+        new_data <- cbind(new_data, qvalue = qvalue::qvalue(new_data$pvalue)[["qvalues"]])
+      }
+      else {
+        message("The number is less than 5000, and adjust pvalue is not recommended")
+      }
     }
-  }
-  return(new_data)
+    return(new_data)
 }
-
