@@ -84,7 +84,7 @@ heatpoint <- function(x,
     norm.ay = dnorm(ay)
     if (only == "x"){norm.ay = rep(1,length(ay))}
     if (only == "y"){norm.ax = rep(1,length(ax))}
-    z = tcrossprod(matrix(norm.ax,,nx),matrix(norm.ay,,nx))/(nx*h[1]*h[2])
+    z = tcrossprod(matrix(norm.ax,nx),matrix(norm.ay,nx))/(nx*h[1]*h[2])
     list(x = gx,y = gy,z = z)
   }
   #--------------------------------------------------------------
@@ -125,7 +125,7 @@ heatpoint <- function(x,
   formula = formula
   lm.res = lm(formula)
   res = list(plot.data = data.frame(x = x,y = y,Density = heatvec),
-             cor.result = list(cor = re[["estimate"]][[names(re[["estimate"]])]],
+             cor.result = list(cor = cor.res[["estimate"]][[names(cor.res[["estimate"]])]],
                                pvalue = cor.res[["p.value"]],
                                method = cor.res["method"]),
              lm.result = list(formula = lm.res[["coefficients"]],

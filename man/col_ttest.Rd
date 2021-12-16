@@ -4,7 +4,7 @@
 \alias{col_ttest}
 \title{Title}
 \usage{
-col_ttest(data, g1, g2, adjust = TRUE)
+col_ttest(data, g1, g2, adjust = TRUE, p = TRUE)
 }
 \arguments{
 \item{data}{the data.frame colume has the two group need to test by t.test}
@@ -14,6 +14,8 @@ col_ttest(data, g1, g2, adjust = TRUE)
 \item{g2}{the number range for group2 like "`4:6`"}
 
 \item{adjust}{TRUE/FALSE add/ or not add the qvalue by qvalue packsages.}
+
+\item{p}{TRUE/FALSE add/ or not add the pvalue by ttest.}
 }
 \value{
 the qvalue and pvalue
