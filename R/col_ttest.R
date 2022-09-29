@@ -5,6 +5,7 @@
 #' @param g2 the number range for group2 like "`4:6`"
 #' @param adjust TRUE/FALSE add/ or not add the qvalue by qvalue packsages.
 #' @param p TRUE/FALSE add/ or not add the pvalue by ttest.
+#' @param method the test method like t.test or wlicox.test
 #' @return the qvalue and pvalue
 #' @export
 #' @importFrom qvalue qvalue
@@ -18,10 +19,15 @@
 #' rownames(test) = paste("Gene", 1:20, sep = "")
 #' col_ttest(data = test,g1 = 1:5,g2 = 6:10)
 
-col_ttest <- function (data, g1, g2, adjust = TRUE, p = TRUE){
+col_ttest <- function (data, g1, g2, adjust = TRUE, p = TRUE, method = "t.test"){
     log2fc = (apply(data, 1, function(x) log2(mean(x[g1])/mean(x[g2]))))
     if(p){
-      pv = (apply(data, 1, function(x) unlist(t.test(x[g1], x[g2])["p.value"])))
+      if(method == "t.test"){
+        pv = (apply(data, 1, function(x) unlist(t.test(x[g1], x[g2])["p.value"])))
+      }
+      if(method == "wilcox.test"){
+        pv = (apply(data, 1, function(x) unlist(wilcox.test(x[g1], x[g2])["p.value"])))
+      }
       new_data = cbind(data, pv)
     } else {
       new_data = data
