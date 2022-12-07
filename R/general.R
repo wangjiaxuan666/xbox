@@ -5,7 +5,8 @@
 #' @return None
 #' @export chdir
 #'
-#' @examples getwd()
+#' @examples
+#' getwd()
 #' outdir = "../"
 #' chdir(outdir)
 #' getwd()
@@ -24,7 +25,7 @@ chdir <- function(outdir){
 #' @export clearhistory
 #' @importFrom utils loadhistory
 #'
-#' @examples #
+#' @examples
 clearhistory <- function() {
   write("", file=".blank")
   loadhistory(".blank")
@@ -37,7 +38,7 @@ clearhistory <- function() {
 #' @export clh
 #' @importFrom  utils loadhistory
 #'
-#' @examples #
+#' @examples
 clh <- function() {
   write("", file=".blank")
   loadhistory(".blank")

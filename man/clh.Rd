@@ -12,6 +12,3 @@ None
 \description{
 Clear R command history
 }
-\examples{
-#
-}

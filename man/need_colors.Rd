@@ -2,16 +2,15 @@
 % Please edit documentation in R/need_color.R
 \name{need_colors}
 \alias{need_colors}
-\alias{need_colours}
 \title{Title color palettes created by douyin dadongsheji, I use colors package a R packages}
 \usage{
-need_colors(colpal, nrcol = NULL, style = "china")
+need_colors(colpal, ncol = NULL, style = "china")
 }
 \arguments{
 \item{colpal}{a valid color palette name(color number + id,such as 'two1',can see disco())
 or a numberic vector that can select color randomly.}
 
-\item{nrcol}{when set the colpal names, nrcol set how many color you need}
+\item{ncol}{when set the colpal names, ncol set how many color you need}
 
 \item{style}{default parameter, Ancient Chinese style is can't change}
 }

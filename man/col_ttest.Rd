@@ -4,7 +4,7 @@
 \alias{col_ttest}
 \title{Title}
 \usage{
-col_ttest(data, g1, g2, adjust = TRUE, p = TRUE)
+col_ttest(data, g1, g2, adjust = TRUE, p = TRUE, method = "t.test")
 }
 \arguments{
 \item{data}{the data.frame colume has the two group need to test by t.test}
@@ -16,6 +16,8 @@ col_ttest(data, g1, g2, adjust = TRUE, p = TRUE)
 \item{adjust}{TRUE/FALSE add/ or not add the qvalue by qvalue packsages.}
 
 \item{p}{TRUE/FALSE add/ or not add the pvalue by ttest.}
+
+\item{method}{the test method like t.test or wlicox.test}
 }
 \value{
 the qvalue and pvalue

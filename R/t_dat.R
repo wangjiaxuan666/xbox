@@ -4,6 +4,7 @@
 #' @return data.frame with the pvalue and qvalue
 #' @export
 #' @importFrom hablar retype
+#' @importFrom stats wilcox.test
 #' @examples
 #' test = matrix(rnorm(200), 20, 10)
 #' test[1:10, seq(1, 10, 2)] = test[1:10, seq(1, 10, 2)] + 3

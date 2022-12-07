@@ -10,6 +10,7 @@
 #' @export
 #' @importFrom qvalue qvalue
 #' @importFrom stats t.test
+#' @import dplyr
 #' @examples
 #' test = matrix(rnorm(200), 20, 10)
 #' test[1:10, seq(1, 10, 2)] = test[1:10, seq(1, 10, 2)] + 3

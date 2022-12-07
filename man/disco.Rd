@@ -4,13 +4,13 @@
 \alias{disco}
 \title{Title display the color which you choose with the function 'need_color'}
 \usage{
-disco(colpal = NULL, nrcol = NULL)
+disco(colpal = NULL, ncol = NULL)
 }
 \arguments{
 \item{colpal}{a valid color palette name(color number + id,such as 'two1',can see disco())
 or a numberic vector that can select color randomly.}
 
-\item{nrcol}{when set the colpal names, nrcol set how many color you need}
+\item{ncol}{when set the colpal names, ncol set how many color you need}
 }
 \value{
 plot a plot display the color you choose
@@ -20,4 +20,5 @@ Title display the color which you choose with the function 'need_color'
 }
 \examples{
 # nothing
+
 }
