@@ -15,9 +15,3 @@ None
 \description{
 Change workdir more fast
 }
-\examples{
-getwd()
-outdir = "../"
-chdir(outdir)
-getwd()
-}

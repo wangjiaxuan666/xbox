@@ -4,10 +4,12 @@
 \alias{xplot.heatpoint}
 \title{Title}
 \usage{
-\method{xplot}{heatpoint}(data)
+\method{xplot}{heatpoint}(obj, ...)
 }
 \arguments{
-\item{data}{the input data for the function `heatpoint`.}
+\item{obj}{the input data for the function `heatpoint`.}
+
+\item{...}{Other parameters}
 }
 \value{
 a ggplot2 object
@@ -16,10 +18,12 @@ a ggplot2 object
 Title
 }
 \examples{
+\dontrun{
 points = 5000
 x = c(rnorm(points/2))
 y = x + rnorm(points/2,sd=0.8)
 x = sign(x)*abs(x)^1.3
 heatpoint(x,y) -> dat_result
 xplot(dat_result)
+}
 }

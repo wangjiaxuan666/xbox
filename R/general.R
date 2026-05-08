@@ -3,13 +3,7 @@
 #' @param outdir where workdir you wang change to.
 #'
 #' @return None
-#' @export chdir
-#'
-#' @examples
-#' getwd()
-#' outdir = "../"
-#' chdir(outdir)
-#' getwd()
+#' @export
 chdir <- function(outdir){
   if(dir.exists(outdir)){
     setwd(outdir)
@@ -22,25 +16,18 @@ chdir <- function(outdir){
 #' Clear R command history
 #'
 #' @return None
-#' @export clearhistory
+#' @export
 #' @importFrom utils loadhistory
-#'
-#' @examples
 clearhistory <- function() {
   write("", file=".blank")
-  loadhistory(".blank")
+  utils::loadhistory(".blank")
   unlink(".blank")
 }
 
-#' Clear R command history
+#' Clear R command history (Alias)
 #'
 #' @return None
-#' @export clh
-#' @importFrom  utils loadhistory
-#'
-#' @examples
+#' @export
 clh <- function() {
-  write("", file=".blank")
-  loadhistory(".blank")
-  unlink(".blank")
+  clearhistory()
 }

@@ -1,3 +1,5 @@
+utils::globalVariables(c("Freq"))
+
 .onAttach <- function(libname, pkgname) {
   packageStartupMessage(
     splitline()

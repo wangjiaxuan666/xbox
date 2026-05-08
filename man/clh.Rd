@@ -2,7 +2,7 @@
 % Please edit documentation in R/general.R
 \name{clh}
 \alias{clh}
-\title{Clear R command history}
+\title{Clear R command history (Alias)}
 \usage{
 clh()
 }
@@ -10,5 +10,5 @@ clh()
 None
 }
 \description{
-Clear R command history
+Clear R command history (Alias)
 }

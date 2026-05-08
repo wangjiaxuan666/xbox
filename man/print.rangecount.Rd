@@ -4,10 +4,10 @@
 \alias{print.rangecount}
 \title{Title change the print method for range_count function result.}
 \usage{
-\method{print}{rangecount}(obj, ...)
+\method{print}{rangecount}(x, ...)
 }
 \arguments{
-\item{obj}{objsct}
+\item{x}{object}
 
 \item{...}{Other parameters}
 }

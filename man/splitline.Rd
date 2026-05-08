@@ -7,7 +7,7 @@
 splitline()
 }
 \value{
-charater
+character
 }
 \description{
 Title cool but useless

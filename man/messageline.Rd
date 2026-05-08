@@ -10,7 +10,7 @@ messageline(message)
 \item{message}{you want say to user}
 }
 \value{
-charater
+character
 }
 \description{
 Title nothing
